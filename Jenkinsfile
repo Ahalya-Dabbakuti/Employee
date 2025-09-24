@@ -17,11 +17,11 @@ pipeline {
         stage('Deploy Frontend to Tomcat') {
             steps {
                 bat '''
-                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\reactEmployeeApi" (
-                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\reactEmployeeApi"
+                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\EmployeeReact" (
+                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\EmployeeReact"
                 )
-                mkdir "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\reactEmployeeApi"
-                xcopy /E /I /Y Frontend\\dist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\reactEmployeeApi"
+                mkdir "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\EmployeeReact"
+                xcopy /E /I /Y Frontend\\dist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\EmployeeReact"
                 '''
             }
         }
