@@ -16,8 +16,7 @@ const App = () => {
   const [fetchId, setFetchId] = useState("");
   const [fetchedEmployee, setFetchedEmployee] = useState(null);
 
-  const baseUrl = config.url;
-  
+   const baseUrl = `${config.url}/employeeapi`;
 
   useEffect(() => {
     fetchAllEmployees();
@@ -25,7 +24,7 @@ const App = () => {
 
   const fetchAllEmployees = async () => {
     try {
-      const res = await axios.get(`${baseUrl}/employeeapi/view`);
+      const res = await axios.get(`${baseUrl}/view`);
       setEmployees(res.data);
     } catch (error) {
       console.error(error.response || error);
@@ -50,7 +49,7 @@ const App = () => {
   const addEmployee = async () => {
     if (!validateForm()) return;
     try {
-      await axios.post(`${baseUrl}/employeeapi/add`, employee);
+      await axios.post(`${baseUrl}/add`, employee);
       setMessage("Employee added successfully.");
       fetchAllEmployees();
       resetForm();
@@ -63,7 +62,7 @@ const App = () => {
   const updateEmployee = async () => {
     if (!validateForm()) return;
     try {
-      await axios.put(`${baseUrl}/employeeapi/update/${employee.id}`, employee);
+      await axios.put(`${baseUrl}/update/${employee.id}`, employee);
       setMessage("Employee updated successfully.");
       fetchAllEmployees();
       resetForm();
@@ -75,7 +74,7 @@ const App = () => {
 
   const deleteEmployee = async (id) => {
     try {
-      await axios.delete(`${baseUrl}/employeeapi/delete/${id}`);
+      await axios.delete(`${baseUrl}/delete/${id}`);
       setMessage(`Employee deleted with ID ${id}`);
       fetchAllEmployees();
     } catch (error) {
@@ -98,7 +97,7 @@ const App = () => {
   const fetchEmployeeById = async () => {
     if (!fetchId) return setMessage("Enter ID to fetch");
     try {
-      const res = await axios.get(`${baseUrl}/employeeapi/get/${fetchId}`);
+      const res = await axios.get(`${baseUrl}/get/${fetchId}`);
       setFetchedEmployee(res.data);
       setMessage("");
     } catch (error) {
